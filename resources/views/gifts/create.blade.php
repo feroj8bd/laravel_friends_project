@@ -20,9 +20,9 @@
             </div>
         @endif
 
-        <h4 class="text-center mt-5">ADD FRIEND</h4>
+        <h4 class="text-center mt-5">ADD Gift</h4>
 
-        <form action="{{ route('friend.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('gift.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             {{-- Friends Name --}}
@@ -31,11 +31,16 @@
                     <label for="name">Friend Name :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="name" id="name" class="form-control">
+                    <select name="friend_id" id="" class="form-control">
+                        <option value="">--Select one--</option>
+                        @foreach ($friends as $friend)
+                            <option value="{{ $friend->id }}">{{ $friend->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-md-4">
-                    @error('name')
+                    @error('friend_id')
                         {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
@@ -43,95 +48,56 @@
 
             </div>
 
-            {{-- Friends Address --}}
+            {{-- Friends gift type --}}
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="address">Address :</label>
+                    <label for="address">Type of gift :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="address" id="address" class="form-control">
+                    <select name="friend_id" id="" class="form-control">
+                        <option value="">--Select one--</option>
+                        @foreach ($gifts as $gift)
+                            <option value="{{ $gift->id }}">{{ $gift->gift_type }}</option>
+                        @endforeach
+                    </select>
+                    
                 </div>
                 <div class="col-md-4">
-                    @error('address')
+                    @error('gift_type')
                         {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
 
-            {{-- Friend mobile no --}}
+            {{-- Friend gift_date --}}
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="mobile">Phone :</label>
+                    <label for="mobile">Date of Gift :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="mobile" id="mobile" class="form-control">
+                    <input type="date" name="gift_date" id="mobile" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    @error('mobile')
+                    @error('gift_date')
                         {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
 
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <label for="date_of_birth">Date of birth :</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="date" name="date_of_birth" id="date_of_birth" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    @error('date_of_birth')
-                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
-                        <small class="alert alert-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
 
-            {{-- Friend Email --}}
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <label for="email">Email :</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" name="email" id="email" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    @error('email')
-                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
-                        <small class="alert alert-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
 
-            
-            {{-- blood group --}}
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <label for="blood_group">Blooad Group :</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" name="blood_group" id="blood_group" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    @error('blood_group')
-                    {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
-                    <small class="alert alert-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
-            
+
             <div class="row mt-3">
                 <div class="col-md-2">
                     <label for="image">Image :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="file" name="image_url" id="image" class="form-control">
+                    <input type="file" name="image" id="image" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    @error('image_url')
+                    @error('image')
                         {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror

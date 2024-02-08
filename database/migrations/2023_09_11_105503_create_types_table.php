@@ -11,24 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('mobile');
-            $table->string('email');
-            $table->date('date_of_birth');
-            $table->string('blood_group')->nullable();
-            $table->string('image_url')->nullable();
+            $table->foreignId('type_id') 
+            ->constrained()
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+            $table->string('gift_type');
+            $table->string('gift_size')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('types');
     }
 };

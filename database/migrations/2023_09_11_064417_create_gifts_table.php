@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('gifts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('mobile');
-            $table->string('email');
-            $table->date('date_of_birth');
-            $table->string('blood_group')->nullable();
-            $table->string('image_url')->nullable();
+            $table->foreignId('friend_id') 
+            ->constrained()
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+            $table->string('gift_type')->nullable();
+            $table->date('gift_date');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('gifts');
     }
 };

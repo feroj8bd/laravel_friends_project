@@ -20,42 +20,34 @@
             </div>
         @endif
 
-        <h4 class="text-center mt-5">See ALL FRIENDS </h4>
+        <h4 class="text-center mt-5">View all types of gifts </h4>
 
         <table class="table">
             <thead>
                 <tr>
                     <th>Sl No</th>
                     <th>Name</th>
-                    <th>Phone</th>
-                    <th>Date of Birth</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Boold Group</th>
+                    <th>Type Of Gift</th>
+                    <th>Gift Size</th>
                     <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($friends as $friend)
+                @foreach ($types as $type)
                     <tr>
-                        <td>{{ $friends->firstItem() + $loop->index }}</td>
-                        <td>{{ $friend->name }}</td>
-                        <td>{{ $friend->mobile }}</td>
-                        <td>{{ $friend->date_of_birth }}</td>
-                        <td>{{ $friend->email }}</td>
-                        <td>{{ $friend->address }}</td>
-                        <td>{{ $friend->blood_group }}</td>
-                        <td>
-                            <img src="{{ asset('storage/' . $friend->image_url) }}" width="100px"
-                                alt="{{ $friend->name . '` s ima' }}">
-                        </td>
-                        <td>
-                            <a href="{{ route('friend.show', $friend->id) }}" class="btn btn-info">Show</a>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ $type->type_id }}</td>
+                        <td>{{ $type->gift_type }}</td>
+                        <td>{{ $type->gift_size }}</td>
+                        <td>{{ $type->image }}</td>
 
-                            <a href="{{ route('friend.edit', $friend->id) }}" class="btn btn-warning">Edit</a>
+                        <td>
+                            <a href="{{ route('type.show', $type->id) }}" class="btn btn-info">Show</a>
 
-                            <a href="{{ route('friend.delete', $friend->id) }}" class="btn btn-danger"
+                            <a href="{{ route('type.edit', $type->id) }}" class="btn btn-warning">Edit</a>
+
+                            <a href="{{ route('type.destroy', $type->id) }}" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                         </td>
                     </tr>
@@ -63,7 +55,7 @@
             </tbody>
         </table>
 
-        {{ $friends->links() }}
+        {{-- {{ $friends->links() }} --}}
 
     </div>
 

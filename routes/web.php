@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\GiftController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +42,9 @@ Route::post('/friend/update/{id}', [FriendController::class, 'update'])->name('f
 
 // route for delete
 Route::get('/friend/delete/{id}', [FriendController::class, 'destroy'])->name('friend.delete');
+
+// route for gift
+Route::resource('gift', GiftController::class);
+
+// route for type
+Route::resource('type', TypeController::class);

@@ -10,11 +10,8 @@
 
 <body>
     <div class="container">
-        <div class="mt-3">
-            <a href="{{ url('/') }}" class="btn btn-success">Home</a>
-            <a href="{{ route('friend.create') }}" class="btn btn-success">Add Friend</a>
-            <a href="{{ route('friend.index') }}" class="btn btn-info">See All Friends</a>
-        </div>
+        @include('allmenu')
+
 
         @if (Session::has('success'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">

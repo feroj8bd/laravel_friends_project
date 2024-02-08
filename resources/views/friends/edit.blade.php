@@ -10,11 +10,7 @@
 
 <body>
     <div class="container">
-        <div class="mt-3">
-            <a href="{{ url('/') }}" class="btn btn-success">Home</a>
-            <a href="{{ route('friend.create') }}" class="btn btn-success">Add Friend</a>
-            <a href="{{ route('friend.index') }}" class="btn btn-info">See All Friends</a>
-        </div>
+       @include('allmenu')
 
         @if (Session::has('success'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -25,7 +21,7 @@
 
         <h4 class="text-center mt-5">Update Friend Information</h4>
 
-        <form action="{{ route('friend.update', $friends->id) }}" method="post">
+        <form action="{{ route('friend.update', $friends->id) }}" method="post" enctype="multipart/form-data">
             @csrf
 
             {{-- Friends Name --}}
@@ -34,7 +30,8 @@
                     <label for="name">Friend Name :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="name" value="{{ old('name', $friends->name) }}" id="name" class="form-control">
+                    <input type="text" name="name" value="{{ old('name', $friends->name) }}" id="name"
+                        class="form-control">
                 </div>
                 <div class="col-md-4">
                     @error('name')
@@ -50,7 +47,8 @@
                     <label for="address">Address :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="address" value="{{ old('address', $friends->address) }}" id="address" class="form-control">
+                    <input type="text" name="address" value="{{ old('address', $friends->address) }}" id="address"
+                        class="form-control">
                 </div>
                 <div class="col-md-4">
                     @error('address')
@@ -66,10 +64,27 @@
                     <label for="mobile">Phone :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="mobile" value="{{ old('mobile', $friends->mobile) }}" id="mobile" class="form-control">
+                    <input type="text" name="mobile" value="{{ old('mobile', $friends->mobile) }}" id="mobile"
+                        class="form-control">
                 </div>
                 <div class="col-md-4">
                     @error('mobile')
+                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                        <small class="alert alert-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <label for="date_of_birth">Date of Birth :</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="date" name="date_of_birth" value="{{ old('date_of_birth', $friends->date_of_birth) }}" id="date_of_birth"
+                        class="form-control">
+                </div>
+                <div class="col-md-4">
+                    @error('date_of_birth')
                         {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
@@ -82,7 +97,8 @@
                     <label for="email">Email :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="email" value="{{ old('email', $friends->email) }}" id="email" class="form-control">
+                    <input type="text" name="email" value="{{ old('email', $friends->email) }}" id="email"
+                        class="form-control">
                 </div>
                 <div class="col-md-4">
                     @error('email')
@@ -98,24 +114,39 @@
                     <label for="blood_group">Blooad Group :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="blood_group" value="{{ old('blood_group', $friends->blood_group) }}" id="blood_group" class="form-control">
+                    <input type="text" name="blood_group" value="{{ old('blood_group', $friends->blood_group) }}"
+                        id="blood_group" class="form-control">
                 </div>
-                <div class="col-md-4">
-                    @error('blood_group')
-                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
-                        <small class="alert alert-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
 
-            {{-- button --}}
-            <div class="row mt-3">
-                <div class="col-md-2"></div>
-                <div class="col-md-4">
-                    <button type="reset" class="btn btn-warning">Rreset</button>
-                    <button type="submit" class="btn btn-info">Update</button>
+                <!-- image -->
+                <div class="row mt-3">
+                    <div class="col-md-2">
+                        <label for="image">Image :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" name="image_url" value="{{ old('image_url', $friends->image_url) }}" id="image"
+                            class="form-control">
+                    </div>
+                    <div class="col-lg-4">
+                        <img class="w-50" src="{{ asset('storage/' . $friends->image_url) }}" width="100px"
+                            alt="{{ $friends->name . '` s ima' }}">
+                    </div>
+                    <div class="col-md-4">
+                        @error('image_url')
+                            {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                            <small class="alert alert-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
-            </div>
+
+                {{-- button --}}
+                <div class="row mt-3">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="reset" class="btn btn-warning">Rreset</button>
+                        <button type="submit" class="btn btn-info">Update</button>
+                    </div>
+                </div>
         </form>
     </div>
 

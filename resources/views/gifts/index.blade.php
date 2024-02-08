@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         @include('allmenu')
-
+    
 
         @if (Session::has('success'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -20,51 +20,44 @@
             </div>
         @endif
 
-        <h4 class="text-center mt-5">See ALL FRIENDS </h4>
+        <h4 class="text-center mt-5">See ALL FRIENDS Gift </h4>
 
         <table class="table">
             <thead>
                 <tr>
                     <th>Sl No</th>
                     <th>Name</th>
-                    <th>Phone</th>
-                    <th>Date of Birth</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Boold Group</th>
+                    <th>Type Of Gift</th>
+                    <th>Date of Gift</th>
                     <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($friends as $friend)
+                @foreach ($gifts as  $gift)
                     <tr>
-                        <td>{{ $friends->firstItem() + $loop->index }}</td>
-                        <td>{{ $friend->name }}</td>
-                        <td>{{ $friend->mobile }}</td>
-                        <td>{{ $friend->date_of_birth }}</td>
-                        <td>{{ $friend->email }}</td>
-                        <td>{{ $friend->address }}</td>
-                        <td>{{ $friend->blood_group }}</td>
-                        <td>
-                            <img src="{{ asset('storage/' . $friend->image_url) }}" width="100px"
-                                alt="{{ $friend->name . '` s ima' }}">
-                        </td>
-                        <td>
-                            <a href="{{ route('friend.show', $friend->id) }}" class="btn btn-info">Show</a>
+                        <td>{{ $loop->index +1  }}</td>
+                        <td>{{ $gift?->friend?->name }}</td>
+                        <td>{{ $gift->gift_type }}</td>
+                        <td>{{ $gift->gift_date }}</td>
+                        <td><img src="{{ asset('storage/'. $gift->image) }}" width="100px" alt="{{ $gift->image, '`s ima' }}"></td>
 
-                            <a href="{{ route('friend.edit', $friend->id) }}" class="btn btn-warning">Edit</a>
+                        
+                        <td> 
+                            <a href="{{ route('gift.show', $gift->id) }}" class="btn btn-info">Show</a>
 
-                            <a href="{{ route('friend.delete', $friend->id) }}" class="btn btn-danger"
+                            <a href="{{ route('gift.edit', $gift->id) }}" class="btn btn-warning">Edit</a>
+
+                            <a href="{{ route('gift.destroy', $gift->id) }}" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
-        {{ $friends->links() }}
-
+        
+            {{-- {{ $friends->links() }} --}}
+      
     </div>
 
 

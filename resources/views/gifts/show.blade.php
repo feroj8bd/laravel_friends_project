@@ -20,42 +20,33 @@
             </div>
         @endif
 
-        <h4 class="text-center mt-5">See Friend Information</h4>
+        <h4 class="text-center mt-5">See Your Gift </h4>
 
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-4"><img  width="100px" src="{{ asset('storage/'. $friends->image_url) }}" alt=""></div>
+            <div class="col-md-4"><img  width="100px" src="{{ asset('storage/'. $gifts->image) }}" alt=""></div>
         </div>
 
         <div class="row">
             <div class="col-md-2">Name :</div>
-            <div class="col-md-4">{{ $friends->name }}</div>
+            <div class="col-md-4">{{ $gifts?->friend?->name }}</div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">Address :</div>
-            <div class="col-md-4">{{ $friends->address }}</div>
+            <div class="col-md-2">Type of Gift :</div>
+            <div class="col-md-4">{{ $gifts->gift_type }}</div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">Phone :</div>
-            <div class="col-md-4">{{ $friends->mobile }}</div>
+            <div class="col-md-2">Date of gift :</div>
+            <div class="col-md-4">{{ $gifts->gift_date }}</div>
         </div>
 
-        <div class="row">
-            <div class="col-md-2">Date of Birth :</div>
-            <div class="col-md-4">{{ $friends->date_of_birth }}</div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2">Email :</div>
-            <div class="col-md-4">{{ $friends->email }}</div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2">Blood Group :</div>
-            <div class="col-md-4">{{ $friends->blood_group }}</div>
-        </div>
+       
+
+      
 
     </div>
 
