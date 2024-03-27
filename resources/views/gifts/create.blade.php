@@ -41,7 +41,6 @@
 
                 <div class="col-md-4">
                     @error('friend_id')
-                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
@@ -51,7 +50,7 @@
             {{-- Friends gift type --}}
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="address">Type of gift :</label>
+                    <label for="address" >Type of gift :</label>
                 </div>
                 <div class="col-md-4">
                     <select name="friend_id" id="" class="form-control">
@@ -60,7 +59,7 @@
                             <option value="{{ $gift->id }}">{{ $gift->gift_type }}</option>
                         @endforeach
                     </select>
-                    
+
                 </div>
                 <div class="col-md-4">
                     @error('gift_type')
@@ -99,6 +98,20 @@
                 <div class="col-md-4">
                     @error('image')
                         {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                        <small class="alert alert-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <label for="image">Friend Image :</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="file" name="friend_image" id="friend_image" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    @error('friend_image')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>

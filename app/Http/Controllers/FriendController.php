@@ -29,7 +29,7 @@ class FriendController extends Controller
     {
         // return dd(request()->all());
 
-        $AllFriends = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:60',
             'address' => 'required|string|max:60',
             'mobile' => 'required|string|max:60',
@@ -37,16 +37,25 @@ class FriendController extends Controller
             'email' => 'required|string|max:60',
             'blood_group' => 'nullable|string|max:60',
             'image_url' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:1024',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:1024',
         ]);
 
-        // image upload
+        // image_url upload
         if ($request->hasFile('image_url')) {
-           $imagePath = $request->File('image_url')->store('img', 'public');
-           $AllFriends['image_url']= $imagePath;
+            $imagePath = $request->file('image_url')->store('img', 'public');
+            $validatedData['image_url'] = $imagePath;
         }
 
-        friend::create($AllFriends);
-        return redirect()->back()->withSuccess('data save done');
+        // image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('img', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        Friend::create($validatedData);
+
+        return redirect()->back()->withSuccess('Data saved successfully');
+
     }
 
     // function for show

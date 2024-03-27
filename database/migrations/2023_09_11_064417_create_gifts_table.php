@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('gifts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('friend_id') 
+            $table->foreignId('friend_id')
             ->constrained()
             ->cascadeOnUpdate()
             ->cascadeOnDelete();
             $table->string('gift_type')->nullable();
             $table->date('gift_date');
             $table->string('image')->nullable();
+            $table->string('friend_image')->nullable();
             $table->timestamps();
         });
     }

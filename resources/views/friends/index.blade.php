@@ -33,6 +33,7 @@
                     <th>Address</th>
                     <th>Boold Group</th>
                     <th>Image</th>
+                    <th>My Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -47,8 +48,16 @@
                         <td>{{ $friend->address }}</td>
                         <td>{{ $friend->blood_group }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $friend->image_url) }}" width="100px"
-                                alt="{{ $friend->name . '` s ima' }}">
+                            <!-- Display image_url -->
+                            @if ($friend->image_url)
+                                <img src="{{ asset('storage/' . $friend->image_url) }}" width="100px" alt="{{ $friend->name }}">
+                            @endif
+                        </td>
+                        <td>
+                            <!-- Display image -->
+                            @if ($friend->image)
+                                <img src="{{ asset('storage/' . $friend->image) }}" width="100px" alt="{{ $friend->name }}">
+                            @endif
                         </td>
                         <td>
                             <a href="{{ route('friend.show', $friend->id) }}" class="btn btn-info">Show</a>

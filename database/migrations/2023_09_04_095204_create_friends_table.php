@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->string('blood_group')->nullable();
             $table->string('image_url')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

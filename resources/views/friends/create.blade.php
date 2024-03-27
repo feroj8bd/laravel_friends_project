@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            
+
             {{-- blood group --}}
             <div class="row mt-3">
                 <div class="col-md-2">
@@ -122,7 +122,7 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="row mt-3">
                 <div class="col-md-2">
                     <label for="image">Image :</label>
@@ -132,7 +132,20 @@
                 </div>
                 <div class="col-md-4">
                     @error('image_url')
-                        {{-- <div class="alert alert-danger">{{ $message }}</div> --}}
+                        <small class="alert alert-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <label for="image">My Image :</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    @error('image')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>

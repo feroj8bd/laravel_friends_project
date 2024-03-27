@@ -34,13 +34,14 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
+        return $request->all();
 
         $AllGifts = $request->validate([
             'name' => 'required',
             'gift_type' => 'nullable|string|max:50',
             'gift_date' => 'required|date|max:50',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+            'friend_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
         ]);
 
         // image upload
@@ -48,7 +49,7 @@ class GiftController extends Controller
            $imagePath = $request->File('image')->store('img', 'public');
            $AllGifts['image'] =  $imagePath;
         }
-   
+
         Gift::create($AllGifts);
 
         return redirect()->back()->withSuccess('data save done');
